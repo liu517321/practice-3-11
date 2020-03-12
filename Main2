@@ -1,0 +1,55 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+	public static void main(String[] args) throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		String s1=br.readLine();
+		int n=Integer.valueOf(s1);
+		int p=0,s=0,f=0,c1sc=0,c1sb=0,c1sj=0,c2sc=0,c2sb=0,c2sj=0;
+		for (int i = 0; i < n; i++) {
+			String s2=br.readLine();
+			char[] s3=s2.toCharArray();
+			if(s3[0]=='B'&&s3[2]=='C') {
+				s++;
+				c1sb++;
+			}else if(s3[0]=='B'&&s3[2]=='J') {
+				f++;
+				c2sj++;
+			}else if(s3[0]=='C'&&s3[2]=='B') {
+				f++;
+				c2sb++;
+			}else if(s3[0]=='C'&&s3[2]=='J') {
+				s++;
+				c1sc++;
+			}else if(s3[0]=='J'&&s3[2]=='B') {
+				s++;
+				c1sj++;
+			}else if(s3[0]=='J'&&s3[2]=='C') {
+				f++;
+				c2sc++;
+			}else {
+				p++;
+			}
+		}
+		System.out.println(s+" "+p+" "+f);
+		System.out.println(f+" "+p+" "+s);
+		StringBuffer sb=new StringBuffer();
+		if(c1sb>=c1sj&&c1sb>=c1sc) {
+			sb.append("B ");
+		}else if(c1sc>c1sb&&c1sc>=c1sj) {
+			sb.append("C ");
+		}else if(c1sj>c1sb&&c1sj>c1sc) {
+			sb.append("J ");
+		}
+		if(c2sb>=c2sj&&c2sb>=c2sc) {
+			sb.append("B");
+		}else if(c2sc>c2sb&&c2sc>=c2sj) {
+			sb.append("C");
+		}else if(c2sj>c2sb&&c2sj>c2sc) {
+			sb.append("J");
+		}
+		System.out.println(sb.toString());
+	}
+}
